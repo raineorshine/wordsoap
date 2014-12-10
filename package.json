@@ -1,8 +1,8 @@
 {
   "name": "wordsoap",
   "version": "0.0.0",
-  "description": "Clean up HTML output from Microsoft Word",
-  "license": "MIT",
+  "description": "Clean up dirty HTML output from Microsoft Word",
+  "license": "ISC",
   "repository": "metaraine/wordsoap",
   "author": {
     "name": "Raine Lourie",
@@ -29,9 +29,13 @@
     "convert",
     "converter"
   ],
+  "dependencies": {
+    "cint": "^8.1.0",
+    "wordsoap-regex": "*"
+  },
   "devDependencies": {
-    "mocha": "*",
-    "insist": "*",
-    "browserify": "^4"
+    "mocha": "^2.0.1",
+    "insist": "^0.2.3",
+    "browserify": "^7.0.0"
   }
 }
