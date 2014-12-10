@@ -7,7 +7,7 @@
 Based on:
 - [wordsoap-regexp](https://github.com/metaraine/wordsoap-regexp)
 
-Used by
+Used by:
 - [wordsoap-cli](https://github.com/metaraine/wordsoap-cli)
 
 ## Install
