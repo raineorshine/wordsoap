@@ -1,6 +1,6 @@
 {
   "name": "wordsoap",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Clean up dirty HTML output from Microsoft Word",
   "license": "ISC",
   "repository": "metaraine/wordsoap",
