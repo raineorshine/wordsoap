@@ -5,8 +5,10 @@
 > Clean up dirty HTML output from Microsoft Word
 
 Based on:
-
 - [wordsoap-regexp](https://github.com/metaraine/wordsoap-regexp)
+
+Used by
+- [wordsoap-cli](https://github.com/metaraine/wordsoap-cli)
 
 ## Install
 
