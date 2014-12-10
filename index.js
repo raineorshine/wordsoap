@@ -9,18 +9,13 @@ var regexes = [
 	'msoAttributes'
 ]
 
-var getWordsoapRegexp = cint.getValue.bind(null, wordsoapRegexes)
-var replace = cint.inContext(String.prototype.replace)
-var strip = cint.partialAt(replace, 1, '')
-// I want a transpiler that will let me do this:
-// var strip = replace(*, '')
-
-// make a regular expression global
-var makeGlobal = cint.partialAt(regexpClone, 1, 'g')
+// var getWordsoapRegexp = cint.getValue.bind(null, wordsoapRegexes)
+// var replace = cint.inContext(String.prototype.replace)
+// var strip = cint.partialAt(replace, 1, '')
+// var makeGlobal = cint.partialAt(regexpClone, 1, 'g')
 
 module.exports = function(text) {
-	return regexes
-		.map(getWordsoapRegexp)
-		.map(makeGlobal)
-		.reduce(strip, text)
+	return text
+		.replace(regexpClone(wordsoapRegexes.msoTags, 'g'), '<$1>')
+		.replace(regexpClone(wordsoapRegexes.msoAttributes, 'g'), '')
 }
