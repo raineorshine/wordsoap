@@ -13,6 +13,7 @@ it('should remove &nbsp; with enclosing tags', function () {
 	assert.equal(wordsoap('<p><b>&nbsp;</b>Hello</p>'), '<p>Hello</p>');
 });
 
-it('should remove empty spans', function () {
+it('should remove empty spans and o:x', function () {
 	assert.equal(wordsoap('<p><span></span>Hello</p>'), '<p>Hello</p>');
+	assert.equal(wordsoap('<p><o:p></o:p>Hello</p>'), '<p>Hello</p>');
 });

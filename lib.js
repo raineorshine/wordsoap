@@ -14,7 +14,7 @@ var regexes = {
 	// https://regex101.com/r/sD4vJ8
 	conditional: /<!\[\w+ [^\]]*]>|<!\[end[^\]]*\]>/.source,
 
-	emptyTags: /<span><\/span>/.source
+	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source
 }
 
 // compile the regexes
