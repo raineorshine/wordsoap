@@ -12,7 +12,7 @@ var regexes = {
 	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
 
 	// https://regex101.com/r/sD4vJ8
-	conditional: /<!\[\w+ [^\]]*]>|<!\[end[^\]]*\]>/.source,
+	conditional: /<!-*\[\w+ [^\]]*]>|<!\[end[^\]]*\]-*>/.source,
 
 	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source,
 

@@ -18,6 +18,11 @@ it('should remove empty spans and o:x', function () {
 	assert.equal(wordsoap('<p><o:p></o:p>Hello</p>'), '<p>Hello</p>');
 });
 
+it('should remove conditional comments', function () {
+	assert.equal(wordsoap('<p><!--[if gte mso 9]>Hello<![endif]--></p>'), '<p>Hello</p>');
+	assert.equal(wordsoap('<p><![if !supportFootnotes]>Hello<![endif]></p>'), '<p>Hello</p>');
+});
+
 it('should remove HTML comments', function () {
 	assert.equal(wordsoap('<p><!-- TEST -->Hello</p>'), '<p>Hello</p>');
 });
