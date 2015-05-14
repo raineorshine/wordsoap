@@ -1,16 +1,26 @@
 'use strict'
 
-var regexpClone = require('regexp-clone')
-// var cint = require('cint')
+var cint = require('cint')
 
-var r = {
+var regexes = {
 	// Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
-	// Regex Tester: https://regex101.com/r/lJ0nQ6/2
 	msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
-	msoAttributes: /<(\w+)(?: (?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
-	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source
-	// emptySpans: /<span>/i
+
+	// Regex Tester: https://regex101.com/r/lJ0nQ6
+	msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
+
+	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
+
+	// https://regex101.com/r/sD4vJ8
+	conditional: /<!\[\w+ [^\]]*]>|<!\[end[^\]]*\]>/.source,
+
+	emptyTags: /<span><\/span>/.source
 }
+
+// compile the regexes
+var regexesCompiled = cint.mapObject(regexes, function(name, s) {
+	return cint.keyValue(name, new RegExp(s, 'gi'))
+})
 
 // var getWordsoapRegexp = cint.getValue.bind(null, wordsoapRegexes)
 // var replace = cint.inContext(String.prototype.replace)
@@ -20,9 +30,11 @@ var r = {
 function clean(text) {
 	return text
 		// .replace(new RegExp(r.msoTags, 'gi'), '')
-		.replace(new RegExp(r.msoAttributes, 'gi'), '<$1>')
-		.replace(new RegExp(r.nbsp, 'gi'), '')
+		.replace(regexesCompiled.msoAttributes, '<$1>')
+		.replace(regexesCompiled.nbsp, '')
+		.replace(regexesCompiled.conditional, '')
+		.replace(regexesCompiled.emptyTags, '')
 }
 
 module.exports = clean
-module.exports.regexes = r
+module.exports.regexes = regexes
