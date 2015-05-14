@@ -7,7 +7,7 @@ var regexes = {
 	msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
 
 	// Regex Tester: https://regex101.com/r/lJ0nQ6
-	msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
+	msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|xmlns:\w+|[ovwxp\w+]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
 
 	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
 
