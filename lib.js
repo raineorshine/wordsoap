@@ -16,7 +16,7 @@ var regexes = {
 
 	htmlComments: /<!--.*-->/.source,
 
-	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source,
+	emptyTags: /<(span|a|[ovwxp]:\w+)[^>]*><\/[^>]+>/.source,
 
 	deadTags: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
 
