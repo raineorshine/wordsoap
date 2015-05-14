@@ -17,3 +17,7 @@ it('should remove empty spans and o:x', function () {
 	assert.equal(wordsoap('<p><span></span>Hello</p>'), '<p>Hello</p>');
 	assert.equal(wordsoap('<p><o:p></o:p>Hello</p>'), '<p>Hello</p>');
 });
+
+it('should remove HTML comments', function () {
+	assert.equal(wordsoap('<p><!-- TEST -->Hello</p>'), '<p>Hello</p>');
+});

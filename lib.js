@@ -14,7 +14,9 @@ var regexes = {
 	// https://regex101.com/r/sD4vJ8
 	conditional: /<!\[\w+ [^\]]*]>|<!\[end[^\]]*\]>/.source,
 
-	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source
+	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source,
+
+	htmlComments: /<!--.*-->/.source,
 }
 
 // compile the regexes
@@ -34,6 +36,7 @@ function clean(text) {
 		.replace(regexesCompiled.nbsp, '')
 		.replace(regexesCompiled.conditional, '')
 		.replace(regexesCompiled.emptyTags, '')
+		.replace(regexesCompiled.htmlComments, '')
 }
 
 module.exports = clean
