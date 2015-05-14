@@ -4,15 +4,6 @@
 
 > Clean up dirty HTML output from Microsoft Word
 
-Based on:
-- [wordsoap-regexp](https://github.com/metaraine/wordsoap-regexp)
-
-Used by:
-- [wordsoap-cli](https://github.com/metaraine/wordsoap-cli)
-
-## Install
-
-
 
 ## Usage
 
@@ -34,6 +25,9 @@ var wordsoap = require('wordsoap')
 
 var dirty = "<p class=MsoNormal style='font-size:12pt'>Text</p>")
 var clean = wordsoap(dirty) // <p>Text</p>
+
+// access individual regexes
+wordsoap.regexes.msoAttributes // <(\w+)(?: (?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>
 ```
 
 
