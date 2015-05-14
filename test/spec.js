@@ -27,6 +27,7 @@ it('should remove empty spans and o:x', function () {
 	assert.equal(wordsoap('<p><o:p></o:p>Hello</p>'), '<p>Hello</p>');
 });
 
-it('should remove xml', function () {
-	assert.equal(wordsoap('<p><xml>blah</xml>Hello</p>'), '<p>Hello</p>');
+it('should remove xml and head elements completely', function () {
+	assert.equal(wordsoap('<p><xml>TEST</xml>Hello</p>'), '<p>Hello</p>');
+	assert.equal(wordsoap('<p><head>TEST</head>Hello</p>'), '<p>Hello</p>');
 });

@@ -18,7 +18,7 @@ var regexes = {
 
 	emptyTags: /<(span|[ovwxp]:\w+)><\/(span|[ovwxp]:\w+)>/.source,
 
-	deadTags: /<xml>[\S\s]*<\/xml>/.source,
+	deadTags: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
 
 }
 
