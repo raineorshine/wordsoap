@@ -18,6 +18,8 @@ var regexes = {
 
 	emptyTags: /<(span|a|[ovwxp]:\w+)[^>]*><\/[^>]+>/.source,
 
+	repeatTags: /(?:(<\/?span>){2,})/.source,
+
 	deadTags: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
 
 }
@@ -41,6 +43,7 @@ function clean(text) {
 		.replace(regexesCompiled.htmlComments, '')
 		.replace(regexesCompiled.emptyTags, '')
 		.replace(regexesCompiled.deadTags, '')
+		.replace(regexesCompiled.repeatTags, '$1')
 }
 
 module.exports = clean
