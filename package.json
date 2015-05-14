@@ -13,12 +13,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
+    "test": "mocha",
     "browser": "browserify -s $npm_package_name -o browser.js ."
   },
-  "files": [
-    "index.js"
-  ],
+  "bin": {
+    "wordsoap": "wordsoap.js"
+  },
   "keywords": [
     "microsoft",
     "word",
@@ -30,12 +30,13 @@
     "converter"
   ],
   "dependencies": {
-    "cint": "^8.1.0",
-    "wordsoap-regex": "^0.1.0"
+    "cint": "^8.2.1",
+    "commander": "^2.8.1",
+    "get-stdin-promise": "^0.1.1"
   },
   "devDependencies": {
-    "mocha": "^2.0.1",
-    "insist": "^0.2.3",
-    "browserify": "^7.0.0"
+    "browserify": "^7.0.0",
+    "chai": "^2.1.1",
+    "mocha": "^2.0.1"
   }
 }

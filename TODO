@@ -1,0 +1,5 @@
+	✔	Incorporate wordsoap-cli and wordsoap-regexes @done (15-05-13 20:33)
+	✔	Define main functionality as clean function @done (15-05-13 20:33)
+	☐	Define regexes as factory functions
+	☐	Get regex to not match space after tag
+		https://regex101.com/r/lJ0nQ6/1

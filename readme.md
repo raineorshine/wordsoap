@@ -12,12 +12,22 @@ Used by:
 
 ## Install
 
-```sh
-$ npm install --save wordsoap
-```
 
 
 ## Usage
+
+### command line
+
+```sh
+$ npm install -g wordsoap
+$ cat msword_garbage.html | wordsoap
+```
+
+### module
+
+```sh
+$ npm install --save wordsoap
+```
 
 ```js
 var wordsoap = require('wordsoap')
