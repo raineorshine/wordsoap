@@ -6,7 +6,7 @@ var regexes = {
 	// Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
 	msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
 
-	// Regex Tester: https://regex101.com/r/lJ0nQ6
+	// https://regex101.com/r/lJ0nQ6
 	msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|xmlns:\w+|[ovwxp\w+]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
 
 	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
@@ -48,3 +48,4 @@ function clean(text) {
 
 module.exports = clean
 module.exports.regexes = regexes
+module.exports.regexesCompiled = regexesCompiled
