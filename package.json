@@ -17,7 +17,7 @@
     "browser": "browserify -s $npm_package_name -o browser.js ."
   },
   "bin": {
-    "wordsoap": "wordsoap.js"
+    "wordsoap": "bin.js"
   },
   "keywords": [
     "microsoft",
@@ -30,13 +30,15 @@
     "converter"
   ],
   "dependencies": {
-    "cint": "^8.2.1",
     "commander": "^2.8.1",
-    "get-stdin-promise": "^0.1.1"
+    "get-stdin-promise": "^0.1.1",
+    "lodash": "^3.8.0"
   },
   "devDependencies": {
     "browserify": "^7.0.0",
     "chai": "^2.1.1",
+    "gulp-plumber": "^1.0.0",
+    "gulp-replace": "^0.5.3",
     "mocha": "^2.0.1"
   }
 }

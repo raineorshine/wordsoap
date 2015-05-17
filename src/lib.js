@@ -1,10 +1,10 @@
 'use strict'
 
-var cint = require('cint')
+var _ = require('lodash')
 
 var regexes = {
 	// Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
-	msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
+	// msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
 
 	// https://regex101.com/r/lJ0nQ6
 	msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|xmlns:\w+|[ovwxp\w+]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
@@ -25,17 +25,9 @@ var regexes = {
 }
 
 // compile the regexes
-var regexesCompiled = cint.mapObject(regexes, function(name, s) {
-	return cint.keyValue(name, new RegExp(s, 'gi'))
-})
+var regexesCompiled = _.mapValues(regexes, λ[new RegExp(#, 'gi')])
 
-// var getWordsoapRegexp = cint.getValue.bind(null, wordsoapRegexes)
-// var replace = cint.inContext(String.prototype.replace)
-// var strip = cint.partialAt(replace, 1, '')
-// var makeGlobal = cint.partialAt(regexpClone, 1, 'g')
-
-function clean(text) {
-	return text
+var clean = λ
 		// .replace(new RegExp(r.msoTags, 'gi'), '')
 		.replace(regexesCompiled.msoAttributes, '<$1>')
 		.replace(regexesCompiled.nbsp, '')
@@ -44,7 +36,6 @@ function clean(text) {
 		.replace(regexesCompiled.emptyTags, '')
 		.replace(regexesCompiled.deadTags, '')
 		.replace(regexesCompiled.repeatTags, '$1')
-}
 
 module.exports = clean
 module.exports.regexes = regexes

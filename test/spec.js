@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('chai').assert;
-var wordsoap = require('../lib.js');
+var wordsoap = require('../build/lib.js');
 
 it('should remove class, lang, style, face, and o:x attributes', function () {
 	var dirtyHtml = "<p class=MsoNormal style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;line-height:107%;font-family:\"Times New Roman\"'>Hello</span></b></p>";

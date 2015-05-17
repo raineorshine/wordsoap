@@ -26,8 +26,11 @@ var wordsoap = require('wordsoap')
 var dirty = "<p class=MsoNormal style='font-size:12pt'>Text</p>")
 var clean = wordsoap(dirty) // <p>Text</p>
 
-// access individual regexes
+// access individual regex strings
 wordsoap.regexes.msoAttributes // <(\w+)(?: (?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>
+
+// access individual regexes compiled with 'gi' flags
+wordsoap.regexesCompiled.msoAttributes // <(\w+)(?: (?:class|lang|style|size|face|[ovwxp]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>
 ```
 
 
