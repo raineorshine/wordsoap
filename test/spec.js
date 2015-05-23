@@ -2,7 +2,7 @@
 var assert = require('chai').assert
 var wordsoap = require('../build/lib.js')
 
-it('should remove class, lang, style, face, and o:x attributes', function () {
+it('should remove class, lang, style, face, o:x, and other useless attributes', function () {
 	var dirtyHtml = "<p class=MsoNormal style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'><i style='font-size:12.0pt;line-height:107%;font-family:\"Times New Roman\"'>Hello</i></b></p>";
 	// assert.equal(wordsoap(dirtyHtml), '<p><b><i>Hello</i></b></p>');
 	assert.equal(wordsoap('<p><i\nclass=MsoEndnoteReference>TEST</i></p>'), '<p><i>TEST</i></p>')
@@ -39,5 +39,19 @@ it('should remove xml and head elements and their content completely', function 
 
 it('should replace &quot; with a " character', function () {
 	assert.equal(wordsoap('&quot;Hello&quot;'), '"Hello"')
+})
+
+it('should remove empty attributes', function () {
+	assert.equal(wordsoap('<a name="hi" title="">Hello</a>'), '<a name="hi">Hello</a>', 'double quotes')
+	assert.equal(wordsoap('<a name="hi" title=\'\'>Hello</a>'), '<a name="hi">Hello</a>', 'single quotes')
+})
+
+it('should remove OLE_LINK tags', function () {
+	assert.equal(wordsoap('<a name="OLE_LINK7">Hello</a>'), 'Hello')
+})
+
+it('should remove empty b or i tags', function () {
+	assert.equal(wordsoap('<b></b>Hello'), 'Hello', '<b>')
+	assert.equal(wordsoap('<i></i>Hello'), 'Hello', '<i>')
 })
 
