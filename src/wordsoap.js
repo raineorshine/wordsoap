@@ -17,6 +17,7 @@ com
 	.usage(extendedHelp)
 	.parse(process.argv)
 
-stdin.then(console.log ◦ wordsoap)
-		 .then(null, console.log)
+stdin
+	.then(console.log ◦ wordsoap)
+	.catch(console.log)
 
