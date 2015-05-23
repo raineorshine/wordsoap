@@ -14,7 +14,7 @@ var regexes = {
 
 	htmlComments: /<!--.*-->/.source,
 
-	deadTags: /<\/?(span|[ovwxp]:\w+)[^>]*>/.source,
+	deadTags: /<\/?(span|br|[ovwxp]:\w+)[^>]*>/.source,
 
 	deadTagsAndContent: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
 
@@ -31,6 +31,7 @@ var clean = λ
 		.replace(regexesCompiled.htmlComments, '')
 		.replace(regexesCompiled.deadTags, '')
 		.replace(regexesCompiled.deadTagsAndContent, '')
+		.replace(new RegExp('\n{3,}', 'gi'), '\n\n') // replace 3 or more newlines w/2
 		.replace(new RegExp('&quot;', 'gi'), '"') // regex literals break sweetjs here
 
 module.exports = clean
