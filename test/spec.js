@@ -35,3 +35,8 @@ it('should remove xml and head elements completely', function () {
 	assert.equal(wordsoap('<p><xml>TEST</xml>Hello</p>'), '<p>Hello</p>');
 	assert.equal(wordsoap('<p><head>TEST</head>Hello</p>'), '<p>Hello</p>');
 });
+
+it('should replace &quot; with a " character', function () {
+	assert.equal(wordsoap('&quot;Hello&quot;'), '"Hello"');
+});
+

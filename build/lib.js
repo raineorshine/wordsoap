@@ -1,7 +1,7 @@
 'use strict';
-var _$862 = require('lodash');
-var regexes$863 = {
-    // Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
+var _$7866 = require('lodash');
+var regexes$7867 = {
+    // Inspired by: http://tim.mackey.ie/2005/11/23/CleanenHTMLUsingRegularExpressions.aspx
     // msoTags: /<[\/]?(font|span|xml|del|ins|[ovwxp]:\w+)[^>]*?>/.source,
     // https://regex101.com/r/lJ0nQ6
     msoAttributes: /<(\w+)(?:\s+(?:class|lang|style|size|face|xmlns:\w+|[ovwxp\w+]))=(?:'[^']*'|""[^""]*""|[^\s>]+)(?:[^>]*)>/.source,
@@ -14,13 +14,14 @@ var regexes$863 = {
     deadTags: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source
 };
 var // compile the regexes
-regexesCompiled$866 = _$862.mapValues(regexes$863, function (a$870) {
-    return new RegExp(a$870, 'gi');
+regexesCompiled$7870 = _$7866.mapValues(regexes$7867, function (a$7874) {
+    return new RegExp(a$7874, 'gi');
 });
-var clean$869 = function (a$871) {
-    return a$871.replace(regexesCompiled$866.msoAttributes, '<$1>').replace(regexesCompiled$866.nbsp, '').replace(regexesCompiled$866.conditional, '').replace(regexesCompiled$866.htmlComments, '').replace(regexesCompiled$866.emptyTags, '').replace(regexesCompiled$866.deadTags, '').replace(regexesCompiled$866.repeatTags, '$1');
+var clean$7873 = function (a$7875) {
+    return a$7875.replace(regexesCompiled$7870.msoAttributes, '<$1>').replace(regexesCompiled$7870.nbsp, '').replace(regexesCompiled$7870.conditional, '').replace(regexesCompiled$7870.htmlComments, '').replace(regexesCompiled$7870.emptyTags, '').replace(regexesCompiled$7870.deadTags, '').replace(regexesCompiled$7870.repeatTags, '$1').replace(new RegExp('&quot;', 'gi'), '"');
 };
-module.exports = clean$869;
-module.exports.regexes = regexes$863;
-module.exports.regexesCompiled = regexesCompiled$866;
+// regex literals break sweetjs here
+module.exports = clean$7873;
+module.exports.regexes = regexes$7867;
+module.exports.regexesCompiled = regexesCompiled$7870;
 //# sourceMappingURL=lib.js.map

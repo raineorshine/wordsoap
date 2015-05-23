@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "browser": "browserify -s $npm_package_name -o browser.js ."
+    "browser": "browserify -s $npm_package_name -o browser.js .",
+    "sample": "cat test/sample.html | ./bin.js > test/out.html"
   },
   "bin": {
     "wordsoap": "bin.js"
