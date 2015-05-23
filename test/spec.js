@@ -27,7 +27,7 @@ it('should remove empty spans and o:x', function () {
 	assert.equal(wordsoap('<p><o:p></o:p>Hello</p>'), '<p>Hello</p>');
 });
 
-it('should remove extra, repeate spans', function () {
+it('should remove extra, repeat spans', function () {
 	assert.equal(wordsoap('<p><span><span><span>Hello</span></span></p>'), '<p><span>Hello</span></p>');
 });
 

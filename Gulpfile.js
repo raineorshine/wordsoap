@@ -1,8 +1,8 @@
-gulp = require('gulp')
-plumber = require('gulp-plumber')
-sweetjs = require('gulp-sweetjs')
+gulp =       require('gulp')
+plumber =    require('gulp-plumber')
+sweetjs =    require('gulp-sweetjs')
 sourcemaps = require('gulp-sourcemaps')
-replace = require('gulp-replace')
+replace =    require('gulp-replace')
 
 config = {
 	src: 'src/**/*.js',
