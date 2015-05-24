@@ -55,3 +55,7 @@ it('should remove empty b or i tags', function () {
 	assert.equal(wordsoap('<i></i>Hello'), 'Hello', '<i>')
 })
 
+it('should turn urls into links', function () {
+	assert.equal(wordsoap('http://google.com'), '<a href="http://google.com">http://google.com</a>')
+})
+

@@ -1,6 +1,6 @@
 'use strict';
-var _$20422 = require('lodash');
-var regexes$20423 = {
+var _$22174 = require('lodash');
+var regexes$22175 = {
     // Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
     deadAttributes: /(?:\s+(?:id|class|lang|style|size|face|link|vlink|align|clear|xmlns(?::\w+|[ovwxp\w+])?))=(?:'[^']*'|""[^""]*""|[^\s>]+)/.source,
     nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
@@ -12,19 +12,20 @@ var regexes$20423 = {
     emptyAttributes: /\s+\w+=["']{2}/.source,
     deadTags: /<\/?(span|div|[ovwxp]:\w+)[^>]*>/.source,
     deadTagsAndContent: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
-    contentLine: /(.)\n(?!\n)/.source
+    contentLine: /(.)\n(?!\n)/.source,
+    url: /((?:(?:https?:\/\/)|(?:www\.))[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b(?:[-a-zA-Z0-9@:%_\+~#?&/=]*(?:.\w+)?))/.source
 };
 var // compile the regexes
-regexesCompiled$20426 = _$20422.mapValues(regexes$20423, function (a$20430) {
-    return new RegExp(a$20430, 'gi');
+regexesCompiled$22178 = _$22174.mapValues(regexes$22175, function (a$22182) {
+    return new RegExp(a$22182, 'gi');
 });
-var clean$20429 = function (a$20431) {
-    return a$20431.replace(regexesCompiled$20426.deadAttributes, '').replace(regexesCompiled$20426.nbsp, '').replace(regexesCompiled$20426.conditional, '').replace(regexesCompiled$20426.htmlComments, '').replace(regexesCompiled$20426.emptyAttributes, '').replace(regexesCompiled$20426.deadTags, '').replace(regexesCompiled$20426.deadTagsAndContent, '').replace(regexesCompiled$20426.oleLink, '$1').replace(regexesCompiled$20426.emptyTags, '').replace(// after emptyAttributes and deadTags
-    regexesCompiled$20426.contentLine, '$1 ').replace(new RegExp('\n{3,}', 'gi'), '\n\n').replace(// replace 3 or more newlines w/2
+var clean$22181 = function (a$22183) {
+    return a$22183.replace(regexesCompiled$22178.deadAttributes, '').replace(regexesCompiled$22178.nbsp, '').replace(regexesCompiled$22178.conditional, '').replace(regexesCompiled$22178.htmlComments, '').replace(regexesCompiled$22178.emptyAttributes, '').replace(regexesCompiled$22178.deadTags, '').replace(regexesCompiled$22178.deadTagsAndContent, '').replace(regexesCompiled$22178.oleLink, '$1').replace(regexesCompiled$22178.emptyTags, '').replace(// after emptyAttributes and deadTags
+    regexesCompiled$22178.contentLine, '$1 ').replace(regexesCompiled$22178.url, '<a href="$1">$1</a>').replace(new RegExp('\n{3,}', 'gi'), '\n\n').replace(// replace 3 or more newlines w/2
     new RegExp('&quot;', 'gi'), '"');
 };
 // regex literals break sweetjs here
-module.exports = clean$20429;
-module.exports.regexes = regexes$20423;
-module.exports.regexesCompiled = regexesCompiled$20426;
+module.exports = clean$22181;
+module.exports.regexes = regexes$22175;
+module.exports.regexesCompiled = regexesCompiled$22178;
 //# sourceMappingURL=lib.js.map

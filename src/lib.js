@@ -26,6 +26,8 @@ var regexes = {
 
 	contentLine: /(.)\n(?!\n)/.source,
 
+	url: /((?:(?:https?:\/\/)|(?:www\.))[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b(?:[-a-zA-Z0-9@:%_\+~#?&/=]*(?:.\w+)?))/.source,
+
 }
 
 // compile the regexes
@@ -42,6 +44,7 @@ var clean = λ
 	.replace(regexesCompiled.oleLink, '$1')
 	.replace(regexesCompiled.emptyTags, '') // after emptyAttributes and deadTags
 	.replace(regexesCompiled.contentLine, '$1 ')
+	.replace(regexesCompiled.url, '<a href="$1">$1</a>')
 	.replace(new RegExp('\n{3,}', 'gi'), '\n\n') // replace 3 or more newlines w/2
 	.replace(new RegExp('&quot;', 'gi'), '"') // regex literals break sweetjs here
 
