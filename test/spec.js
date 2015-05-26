@@ -5,8 +5,8 @@ var wordsoap = require('../build/lib.js')
 it('should remove class, lang, style, face, o:x, and other useless attributes', function () {
 	var dirtyHtml = "<p class=MsoNormal style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'><i style='font-size:12.0pt;line-height:107%;font-family:\"Times New Roman\"'>Hello</i></b></p>";
 	// assert.equal(wordsoap(dirtyHtml), '<p><b><i>Hello</i></b></p>');
-	assert.equal(wordsoap('<p><i\nclass=MsoEndnoteReference>TEST</i></p>'), '<p><i>TEST</i></p>')
-	assert.equal(wordsoap('<a style="mso-endnote-id:edn1" href="#_edn1" name="_ednref1">'), '<a href="#_edn1" name="_ednref1">', 'should not remove other attributes')
+	assert.equal(wordsoap('<p><i\nstyle=something>TEST</i></p>'), '<p><i>TEST</i></p>')
+	assert.equal(wordsoap('<a style="mso-endnote-id:edn1" href="#_edn1" name="_ednref1">Hello</a>'), '<a href="#_edn1" name="_ednref1">Hello</a>', 'should not remove other attributes')
 })
 
 it('should remove &nbsp; with enclosing tags', function () {
