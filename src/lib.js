@@ -5,7 +5,9 @@ var _ = require('lodash')
 var regexes = {
 	// Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
 
-	deadAttributes: /(?:\s+(?:id|class|lang|style|size|face|link|vlink|align|clear|xmlns(?::\w+|[ovwxp\w+])?))=(?:'[^']*'|""[^""]*""|[^\s>]+)/.source,
+	// endNote: /<span\s+class=MsoEndnoteReference>([^]*)<\/span>/.source,
+
+	deadAttributes: /(?:\s+(?:id|lang|style|size|face|link|vlink|align|clear|xmlns(?::\w+|[ovwxp\w+])?))=(?:'[^']*'|""[^""]*""|[^\s>]+)/.source,
 
 	nbsp: /(<[^\s>]*>&nbsp;<\/[^\s>]*>)|&nbsp;/.source,
 
@@ -20,7 +22,8 @@ var regexes = {
 
 	emptyAttributes: /\s+\w+=["']{2}/.source,
 
-	deadTags: /<\/?(span|div|[ovwxp]:\w+)[^>]*>/.source,
+	deadTags: /<\/?(div|[ovwxp]:\w+)[^>]*>/.source,
+	// deadTags: /<\/?(span(?!\s+class=MsoEndnoteReference)|div|[ovwxp]:\w+)[^>]*>/.source,
 
 	deadTagsAndContent: /<(xml|head)>[\S\s]*<\/(xml|head)>/.source,
 
@@ -34,6 +37,7 @@ var regexes = {
 var regexesCompiled = _.mapValues(regexes, λ[new RegExp(#, 'gi')])
 
 var clean = λ
+	// .replace(regexesCompiled.endNote, '<sup>$1</sup>')
 	.replace(regexesCompiled.deadAttributes, '')
 	.replace(regexesCompiled.nbsp, '')
 	.replace(regexesCompiled.conditional, '')

@@ -55,6 +55,10 @@ it('should remove empty b or i tags', function () {
 	assert.equal(wordsoap('<i></i>Hello'), 'Hello', '<i>')
 })
 
+it('replace MsoEndnoteReferences with sup tags', function () {
+	assert.equal(wordsoap('<span class=MsoEndnoteReference>[12]</span>'), '<sup>[12]</sup>')
+})
+
 it('should turn urls into links', function () {
 	assert.equal(wordsoap('http://google.com'), '<a href="http://google.com">http://google.com</a>')
 })
