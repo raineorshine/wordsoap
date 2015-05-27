@@ -39,7 +39,7 @@ var regexes = {
 // compile the regexes
 var regexesCompiled = _.mapValues(regexes, λ[new RegExp(#, 'gi')])
 
-// clean, first parse (before cheerio)
+// first parse (before cheerio)
 var clean1 = λ
 	// .replace(regexesCompiled.endNote, '<sup>$1</sup>')
 	.replace(regexesCompiled.deadAttributes, '')
@@ -79,7 +79,7 @@ var domClean = function(html) {
 	return $.html()
 }
 
-var clean = _.flow(clean1, domClean, clean2)
+var clean = clean1 +| domClean +| clean2
 
 module.exports = clean
 module.exports.regexes = regexes

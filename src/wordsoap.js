@@ -18,6 +18,6 @@ com
 	.parse(process.argv)
 
 stdin
-	.then(console.log ◦ wordsoap)
+	.then(console.log +. wordsoap)
 	.catch(console.log)
 
