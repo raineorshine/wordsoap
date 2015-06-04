@@ -2,6 +2,7 @@
 
 var _ = require('lodash')
 var cheerio = require("cheerio")
+var iconv = require('iconv-lite')
 
 var regexes = {
 	// Inspired by: http://tim.mackey.ie/2005/11/23/CleanWordHTMLUsingRegularExpressions.aspx
@@ -61,10 +62,12 @@ var clean2 = λ
 	.replace(new RegExp('&quot;', 'gi'), '"')
 	.replace(new RegExp('\n{3,}', 'gi'), '\n\n') // replace 3 or more newlines w/2
 
-// cleaning operations that
+// Because regexes cannot match nested expressions (such as the MsoEndNoteReference elements that delineate footnotes), we must parse the HTML. Cheerio gives us the parsing and querying that we need without the heaviness of a full simulated DOM like jsdom.
 var domClean = function(html) {
 
-	var $ = cheerio.load(html)
+	var $ = cheerio.load(html, {
+		decodeEntities: false
+	})
 
 	// only works on elements with static text content (in order to handle nested elements)
 	$.prototype.replaceTag = function(newTag) {
@@ -76,6 +79,9 @@ var domClean = function(html) {
 	}
 
 	$('.MsoEndnoteReference').replaceTag('sup')
+
+	$('html').prepend('<head><meta charset="utf-8"></head>')
+
 	return $.html()
 }
 

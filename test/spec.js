@@ -63,3 +63,7 @@ it('should turn urls into links', function () {
 	assert.equal(wordsoap('http://google.com'), '<a href="http://google.com">http://google.com</a>')
 })
 
+it('should preserve UTF-8 characters', function () {
+	assert.equal(wordsoap('Chögyam, saṃsāra'), 'Chögyam, saṃsāra')
+})
+
